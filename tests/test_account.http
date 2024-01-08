@@ -58,5 +58,5 @@ PATCH https://api-travel-blog.onrender.com/account/password/1
 Content-Type: application/json
 
 {
-  "password": "test"
+  "password": "password"
 }
