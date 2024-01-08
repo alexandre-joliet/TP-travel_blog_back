@@ -1,18 +1,15 @@
 const articlesDatamapper = require('../dataMapper/articles');
 
 const articlesController = {
-  async getAllArticles ( _, response, next ) {
-    // On récupère tous les articles de la BDD
-    console.log('je suis dans le controller');
-    const { error, articles } = await articlesDatamapper.findAll();
+  
+  async getAllArticles ( request, response, next ) {
+    const { error, allArticles } = await articlesDatamapper.findAll();
 
     if (error) {
-      // J'ai une erreur donc 
       next(error);
     }
     else {
-      // Je retourne tous les articles
-      response.json(articles);
+      response.json(allArticles);
     }
   }
 };
