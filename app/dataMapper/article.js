@@ -21,7 +21,7 @@ const articleDatamapper = {
   },
 
   async updateOneArticle (id, body) {
-    const sqlQurey = {
+    const sqlQuery = {
       text: 'UPDATE article SET (title,description,content,image,author) = ($1, $2, $3, $4, $5) WHERE id=$6 RETURNING *',
       values: [body.title, body.description, body.content, body.image, body.author, id]
     }
@@ -41,7 +41,7 @@ const articleDatamapper = {
     return { error, updatedArticle };
   },
 
-  
+
   // TODO: A REFACTORISER
 
   /**
