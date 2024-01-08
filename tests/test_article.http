@@ -1,9 +1,9 @@
 ### Récupération d'un article
-GET https://api-oblog2.onrender.com/article/3
+GET https://api-travel-blog.onrender.com/article/3
 
 
 ### Modification d'un article par son id 
-PATCH  https://api-oblog2.onrender.com/article/2
+PATCH  https://api-travel-blog.onrender.com/article/2
 content-type: application/json
 
 {
@@ -16,5 +16,5 @@ content-type: application/json
 
 
 ### Supprimer un article à partir de son id
-DELETE https://api-oblog2.onrender.com/article/9
+DELETE https://api-travel-blog.onrender.com/article/9
 

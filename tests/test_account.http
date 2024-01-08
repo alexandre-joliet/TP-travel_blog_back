@@ -1,5 +1,5 @@
 ### Création d'un compte
-POST https://api-oblog2.onrender.com/signup
+POST https://api-travel-blog.onrender.com/signup
 Content-Type: application/json
 
 {
@@ -14,11 +14,11 @@ Content-Type: application/json
 
 
 ### Suppression d'un user
-DELETE https://api-oblog2.onrender.com/account/4
+DELETE https://api-travel-blog.onrender.com/account/4
 
 
 ### Modification du last_name d'un user
-PATCH https://api-oblog2.onrender.com/account/lastname/3
+PATCH https://api-travel-blog.onrender.com/account/lastname/3
 Content-Type: application/json
 
 {
@@ -27,7 +27,7 @@ Content-Type: application/json
 
 
 ### Modification du first_name d'un user
-PATCH https://api-oblog2.onrender.com/account/firstname/3
+PATCH https://api-travel-blog.onrender.com/account/firstname/3
 Content-Type: application/json
 
 {
@@ -36,7 +36,7 @@ Content-Type: application/json
 
 
 ### Modification du mail d'un user
-PATCH https://api-oblog2.onrender.com/account/mail/3
+PATCH https://api-travel-blog.onrender.com/account/mail/3
 Content-Type: application/json
 
 {
@@ -45,7 +45,7 @@ Content-Type: application/json
 
 
 ### Modification du pseudo d'un user
-PATCH https://api-oblog2.onrender.com/account/pseudo/3
+PATCH https://api-travel-blog.onrender.com/account/pseudo/3
 Content-Type: application/json
 
 {
@@ -54,7 +54,7 @@ Content-Type: application/json
 
 
 ### Modification du password d'un user
-PATCH https://api-oblog2.onrender.com/account/password/1
+PATCH https://api-travel-blog.onrender.com/account/password/1
 Content-Type: application/json
 
 {
