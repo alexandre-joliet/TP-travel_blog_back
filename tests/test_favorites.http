@@ -1,0 +1,15 @@
+### ARTICLES
+### Récupération de tous les favoris d'un utilisateur à partir de son id
+GET http://localhost:3000/favorites/2
+
+### FAVORITE
+POST http://localhost:3000/favorites
+Content-Type: application/json
+
+{
+  "article_id": 4,
+  "user_id": 2
+}
+
+### Supprimer un favoris à partir de son id 
+DELETE http://localhost:3000/favorites/4

@@ -1,0 +1,2 @@
+### Récupération de tous les users
+GET https://api-oblog2.onrender.com/users

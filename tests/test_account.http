@@ -1,0 +1,62 @@
+### Création d'un compte
+POST https://api-oblog2.onrender.com/signup
+Content-Type: application/json
+
+{
+  "last_name": "Jean",
+  "first_name": "Michel",
+  "avatar": "",
+  "mail": "jmichel@mail.com",
+  "pseudo": "martine", 
+  "password": "password",
+  "role_id": "2"
+}
+
+
+### Suppression d'un user
+DELETE https://api-oblog2.onrender.com/account/4
+
+
+### Modification du last_name d'un user
+PATCH https://api-oblog2.onrender.com/account/lastname/3
+Content-Type: application/json
+
+{
+  "lastName": "NGUYEN"
+}
+
+
+### Modification du first_name d'un user
+PATCH https://api-oblog2.onrender.com/account/firstname/3
+Content-Type: application/json
+
+{
+  "firstName": "Vincent"
+}
+
+
+### Modification du mail d'un user
+PATCH https://api-oblog2.onrender.com/account/mail/3
+Content-Type: application/json
+
+{
+  "mail": "johndoe@mail.com"
+}
+
+
+### Modification du pseudo d'un user
+PATCH https://api-oblog2.onrender.com/account/pseudo/3
+Content-Type: application/json
+
+{
+  "pseudo": "VincentN"
+}
+
+
+### Modification du password d'un user
+PATCH https://api-oblog2.onrender.com/account/password/1
+Content-Type: application/json
+
+{
+  "password": "test"
+}

@@ -1,0 +1,422 @@
+---
+openapi: "3.0.1"
+info:
+  title: "OBLOG2"
+  description: "API used for the Oblog#2 project"
+  version: "V1"
+servers:
+- url: "https://api-oblog2.onrender.com"
+paths:
+  
+  /articles:
+    get:
+      parameters: []
+      responses:
+        "200":
+          description: "All articles retrieved"
+        "500":
+          description: "Internal servor error"
+      tags:
+        - Articles
+      summary: Get the list of all articles
+
+  /article/1:
+    get:
+      parameters: []
+      responses:
+        "200":
+          description: "Article retrieved"
+      tags:
+        - Articles
+      summary: Get one article based on its ID
+
+  /article/2:
+    patch:
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - "author"
+              - "content"
+              - "description"
+              - "image"
+              - "title"
+              type: "object"
+              properties:
+                title:
+                  type: "string"
+                description:
+                  type: "string"
+                content:
+                  type: "string"
+                image:
+                  type: "string"
+                author:
+                  type: "integer"
+              additionalProperties: false
+            examples:
+              example:
+                value: "{\r\n    \"title\": \"Nouveau titre de l'article 2\",\r\n\
+                  \    \"description\": \"Lorem ipsum dolor sit amet consectetur adipisicing\
+                  \ elit. Error obcaecati ipsum voluptas ratione unde distinctio!'\"\
+                  ,\r\n    \"content\": \"Lorem ipsum dolor sit, amet consectetur\
+                  \ adipisicing elit. At enim ab qui ea, quasi placeat fugiat? Aliquid\
+                  \ rem totam dolorum autem ipsa exercitationem, dolore consequuntur\
+                  \ eos fugiat, est sunt, rerum ut laborum harum voluptatem minima\
+                  \ sit asperiores veritatis sint quia fugit! Blanditiis officia facere\
+                  \ asperiores, labore, sit reiciendis dolorem maiores error nisi\
+                  \ eligendi explicabo expedita fugit illo recusandae molestiae in\
+                  \ ea. Soluta iste, consectetur eveniet nihil commodi nisi, sequi\
+                  \ similique error et id dolorem perferendis corrupti explicabo provident\
+                  \ expedita, beatae odio modi? Qui, saepe accusantium, voluptates\
+                  \ alias explicabo molestiae voluptatem placeat atque quidem velit\
+                  \ similique necessitatibus vitae unde quos? Eius?\",\r\n    \"image\"\
+                  : \"\",\r\n    \"author\": 1\r\n}"
+      responses:
+        "200":
+          description: "Article modified"
+      tags:
+        - Articles
+      summary: Update one existing article based on its ID
+
+
+  /article/7:
+    delete:
+      parameters: []
+      responses:
+        "200":
+          description: "Article deleted"
+      tags:
+        - Articles
+      summary: Delete one article based on its ID
+
+
+  /categories:
+    get:
+      parameters: []
+      responses:
+        "200":
+          description: "All categories retrieved"
+      tags:
+        - Categories
+      summary: Get the list of all categories
+
+  /category/1:
+    get:
+      parameters: []
+      responses:
+        "200":
+          description: "Category retrieved"
+      tags:
+        - Categories
+      summary: Get one category based on its ID
+
+  /category/1/articles:
+    get:
+      parameters: []
+      responses:
+        "200":
+          description: "Articles for this category retrieved"
+      tags:
+        - Categories
+      summary: Get all articles from a category based on its ID
+
+  /category:
+    post:
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - "creator"
+              - "label"
+              type: "object"
+              properties:
+                label:
+                  type: "string"
+                creator:
+                  type: "integer"
+              additionalProperties: false
+            examples:
+              example:
+                value: "{\r\n    \"label\": \"USA\",\r\n    \"creator\": 1\r\n}"
+      responses:
+        "200":
+          description: "Category created"
+      tags:
+        - Categories
+      summary: Create a new category
+
+  /category/14:
+    patch:
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - "label"
+              type: "object"
+              properties:
+                label:
+                  type: "string"
+              additionalProperties: false
+            examples:
+              example:
+                value: "{\r\n    \"label\": \"Italie\"\r\n}"
+      responses:
+        "200":
+          description: "Category modified"
+      tags:
+        - Categories
+      summary: Update an existing category based on its ID
+
+  /category/13:
+    delete:
+      parameters: []
+      responses:
+        "200":
+          description: "Category deleted"
+      tags:
+        - Categories
+      summary: Delete one category based on its ID
+
+  /users:
+    get:
+      parameters: []
+      responses:
+        "200":
+          description: "List of users retrieved"
+      tags:
+        - Account
+      summary: Get the list of all users
+
+  /signup:
+    post:
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - "avatar"
+              - "first_name"
+              - "last_name"
+              - "mail"
+              - "password"
+              - "pseudo"
+              - "role_id"
+              type: "object"
+              properties:
+                last_name:
+                  type: "string"
+                first_name:
+                  type: "string"
+                avatar:
+                  type: "string"
+                mail:
+                  type: "string"
+                pseudo:
+                  type: "string"
+                password:
+                  type: "string"
+                role_id:
+                  type: "string"
+              additionalProperties: false
+            examples:
+              example:
+                value: "{\r\n    \"last_name\": \"Jean\",\r\n    \"first_name\": \"\
+                  Michel\",\r\n    \"avatar\": \"\",\r\n    \"mail\": \"jmichel@mail.com\"\
+                  ,\r\n    \"pseudo\": \"martine\",\r\n    \"password\": \"password\"\
+                  ,\r\n    \"role_id\": \"2\"\r\n}"
+      responses:
+        "200":
+          description: "User created"
+      tags:
+        - Account
+      summary: Create a new user
+
+  /account/1:
+    get:
+      parameters: []
+      responses:
+        "200":
+          description: "User info retrieved"
+      tags:
+        - Account
+      summary: Get the info of a user based on its ID
+
+  /account/lastname/3:
+    patch:
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - "lastName"
+              type: "object"
+              properties:
+                lastName:
+                  type: "string"
+              additionalProperties: false
+            examples:
+              example:
+                value: "{\r\n    \"lastName\": \"NGUYEN\"\r\n}"
+      responses:
+        "200":
+          description: "User lastname modified"
+      tags:
+        - Account
+      summary: Update the lastname of a user based on its ID
+
+  /account/firstname/3:
+    patch:
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - "firstName"
+              type: "object"
+              properties:
+                firstName:
+                  type: "string"
+              additionalProperties: false
+            examples:
+              example:
+                value: "{\r\n    \"firstName\": \"Vincent\"\r\n}"
+      responses:
+        "200":
+          description: "User firstname modified"
+      tags:
+        - Account
+      summary: Update the firstname of a user based on its ID
+
+  /account/mail/3:
+    patch:
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - "mail"
+              type: "object"
+              properties:
+                mail:
+                  type: "string"
+              additionalProperties: false
+            examples:
+              example:
+                value: "{\r\n    \"mail\": \"johndoe@mail.com\"\r\n}"
+      responses:
+        "200":
+          description: "User mail modified"
+      tags:
+        - Account
+      summary: Update the mail address of a user based on its ID
+
+  /account/pseudo/3:
+    patch:
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - "pseudo"
+              type: "object"
+              properties:
+                pseudo:
+                  type: "string"
+              additionalProperties: false
+            examples:
+              example:
+                value: "{\r\n    \"pseudo\": \"VincentN\"\r\n}"
+      responses:
+        "200":
+          description: "User pseudo modified"
+      tags:
+        - Account
+      summary: Update the pseudo of a user based on its ID
+
+  /account/password/3:
+    patch:
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - "password"
+              type: "object"
+              properties:
+                password:
+                  type: "string"
+              additionalProperties: false
+            examples:
+              example:
+                value: "{\r\n    \"password\": \"test\"\r\n}"
+      responses:
+        "200":
+          description: "User password modified"
+      tags:
+        - Account
+      summary: Update the password of a user based on its ID
+
+  /account/5:
+    delete:
+      parameters: []
+      responses:
+        "200":
+          description: "User deleted"
+      tags:
+        - Account
+      summary: Delete a user based on its ID
+
+  /favorites/1:
+    get:
+      parameters: []
+      responses:
+        "200":
+          description: "All favorites retrieved"
+        "500":
+          description: "Internal servor error"
+      tags:
+        - Favorites
+      summary: Get the list of all favorites for a user based on its ID
+
+  /favorites:
+    post:
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - "article_id"
+              - "user_id"
+              type: "object"
+              properties:
+                article_id:
+                  type: "integer"
+                user_id:
+                  type: "integer"
+              additionalProperties: false
+            examples:
+              example:
+                value: "{\r\n    \"article_id\": 1,\r\n    \"user_id\": 1\r\n}"
+      responses:
+        "200":
+          description: "Favorite added for this user"
+      tags:
+        - Favorites
+      summary: Add a favorite for a user based on its ID
+
+components:
+  securitySchemes: {}

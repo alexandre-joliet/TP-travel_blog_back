@@ -1,0 +1,51 @@
+const signupDataMapper = require("../dataMapper/signup");
+const userDataMapper = require("../dataMapper/user");
+const bcrypt = require('bcrypt');
+
+const signupController = {
+
+  async createAccount (request, response, next) {
+    const { last_name, first_name, avatar, mail, pseudo, password } = request.body;
+    
+    try {
+      // On teste que tous les champs obligatoires ont été remplis
+      if (!last_name || !first_name || !mail || !pseudo || !password) {
+        return response.status(400).json({error: 'Merci de renseigner tous les champs obligatoires : Nom, Prénom, Mail, Pseudo et Mot de passe.'})
+      }
+
+      // On vérifie que l'adresse mail n'est pas déjà été utilisée par un autre utilisateur
+      const existingMail = await userDataMapper.getOneUserFromMail(mail);
+
+      if (existingMail.userFound > 0) {
+        return response.status(400).json({error: `L'adresse mail renseignée est déjà utilisée par un autre utilisateur.`})
+      }
+
+      // On vérifie que le pseudo n'est pas déjà utilisé par un autre utilisateur
+      const existingPseudo = await userDataMapper.getOneUserFromPseudo(pseudo);
+
+      if (existingPseudo.userFound > 0) {
+        return response.status(400).json({error: `Le pseudo renseigné est déjà utilisé par un autre utilisateur.`})
+      }
+
+      // On encrypte le mot de passe avec bcrypt
+      const encryptedPassword = bcrypt.hashSync(password, 10);
+
+
+      const { error, newAccount } = await signupDataMapper.createAccount(last_name, first_name, avatar, mail, pseudo, encryptedPassword);
+
+      if (error) {
+        next(error);
+      }
+      else {
+        response.json(newAccount);
+      }
+
+    } 
+    catch (error) {
+      console.log(error);
+      response.status(500).json({error: 'Le serveur rencontre actuellement un problème. Veuillez nous en excuser.'});
+    }
+  }
+}
+
+module.exports = signupController;  

@@ -1,0 +1,8 @@
+### Connexion d'un user
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "mail": "johndoe@mail.com",
+  "password": "test"
+}

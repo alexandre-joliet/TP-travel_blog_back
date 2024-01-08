@@ -1,0 +1,36 @@
+### CATEGORIES
+
+### Récupération de toutes les catégories
+GET https://api-oblog2.onrender.com/categories
+
+
+### CATEGORY
+### Récupération d'une catégorie
+GET https://api-oblog2.onrender.com/category/6
+
+
+### Création d'une catégorie
+POST https://api-oblog2.onrender.com/category
+Content-Type: application/json
+
+{
+  "label": "USA",
+  "creator": 1
+} 
+
+
+### Suppression d'une catégorie
+DELETE https://api-oblog2.onrender.com/category/13
+
+
+### Modification d'une catégorie
+PATCH https://api-oblog2.onrender.com/category/14
+Content-Type: application/json
+
+{
+  "label": "Italie"
+}
+
+
+### Récupération des articles d'une catégorie
+GET https://api-oblog2.onrender.com/category/1/articles
