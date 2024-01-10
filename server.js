@@ -1,29 +1,31 @@
-// Fichier du lancement du serveur
 require("dotenv").config();
 const express = require('express');
 const cors = require('cors');
+const session = require("express-session");
 
 const app = express();
 const Router = require('./app/routers');
 
-// Par défaut notre serveur est fermé à tous les appels d'autres serveurs, le module "cors" nous permet de l'ouvrir aux appels provenant du Front
-// const CORSMethods = {
-//   origin: 'http://localhost:3000', // Attention l'adresse est "en dure" et peut être problématique suivant l'url ou le port spécifié côté front
-//   optionsSuccessStatus: 200 // some legacy browers (IE11, various SmartTVs) choke on 204
-// };
-
-app.use(cors());
+app.use(cors({
+  // TODO: a modifier par l'url du front
+  origin: "http://localhost:3001",
+  credentials: true,
+}));
 
 /**
   La session ne doit être utilisable en ce état malgrés la configuration qui est correcte
  * Les appels au BACK se faisant à partir du serveur FRONT, l'utilisateur n'a pas aucune action directe sur la session côté BACK
  */
-// const session = require("express-session");
-// app.use(session({
-//   secret: process.env.SESSION_SECRET,
-//   resave: true,
-//   saveUninitialized: true
-// }));
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  // TODO: Secure à passer en true en prod + revoir la durée du cookie
+  cookie: {
+    secure: false,
+    maxAge: 1000 * 60 * 2,
+  }
+}));
 
 // Pour pouvoir exploiter le body
 app.use(express.json());
@@ -38,7 +40,7 @@ app.use(express.static('public'));
 app.use(Router);
 
 // Lancement du serveur
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-  console.log(`Our magnificent server has been started at the following address : http://localhost:${PORT}`);
+  console.log(`💻 Our server has been started on: http://localhost:${PORT}`);
 });
