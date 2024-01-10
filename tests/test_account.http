@@ -1,3 +1,11 @@
+### Accès page infos User [LOCAL]
+GET http://localhost:3000/account
+
+
+### Accès page infos User
+GET https://api-travel-blog.onrender.com/account
+
+
 ### Création d'un compte
 POST https://api-travel-blog.onrender.com/signup
 Content-Type: application/json
