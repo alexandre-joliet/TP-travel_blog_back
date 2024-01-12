@@ -4,16 +4,16 @@ const bcrypt = require('bcrypt');
 const accountController = {
   
   async showUserInfo (request, response, next) {
-    const { id } = request.params;
-    
-    const { error, userFound } = await userDataMapper.getOneUserFromId(id);
+    console.log(request.session);
 
-    if (error) {
-      next(error);
+    if (!request.session.isConnected) {
+      return response.status(401).json({message: "Utilisateur non connecté"})
     }
-    else {
-      response.json(userFound)
-    }
+
+    const user = request.session.user;
+
+    response.json(user);
+
   },
 
   async deleteUserAccount (request, response, next) {
