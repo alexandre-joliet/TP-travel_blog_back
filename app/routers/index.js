@@ -5,7 +5,7 @@ const categoryRouter = require('./category');
 const signupRouter = require('./signup');
 const loginRouter = require('./login');
 const logoutRouter = require('./logout');
-const userRouter = require('./user');
+const adminRouter = require('./admin');
 const accountRouter = require('./account');;
 const favoritesRouter = require("./favorites");
 
@@ -25,7 +25,7 @@ router.use('/signup', signupRouter);
 router.use('/login', loginRouter);
 router.use('/logout', logoutRouter);
 
-router.use('/users', userRouter);
+router.use('/admin', adminRouter);
 
 router.use('/account', accountRouter);
 
