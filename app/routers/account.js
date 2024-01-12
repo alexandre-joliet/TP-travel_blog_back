@@ -6,8 +6,7 @@ const router = express.Router();
 // L'utilisateur est-il connecté
 // router.use(securityBlog2Service.isConnected);
 
-router.get('/:id', accountController.showUserInfo);
-router.delete('/:id', accountController.deleteUserAccount);
+router.get('/', accountController.showUserInfo);
 
 router.patch('/lastname/:id', accountController.updateUserLastName);
 router.patch('/firstname/:id', accountController.updateUserFirstName);
