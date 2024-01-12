@@ -1,3 +1,7 @@
 ### ARTICLES
 ### Récupération de tous les articles
+GET http://localhost:3000/articles
+
+
+### Récupération de tous les articles
 GET https://api-travel-blog.onrender.com/articles

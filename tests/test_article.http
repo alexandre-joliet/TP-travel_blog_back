@@ -2,13 +2,27 @@
 GET https://api-travel-blog.onrender.com/article/3
 
 
+### Création d'un article
+POST http://localhost:3000/article
+Content-Type: application/json
+
+{
+  "title": "Nouveau super article",
+  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error obcaecati ipsum voluptas ratione unde distinctio!",
+  "content": "<h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</h2><p>At enim ab qui ea, quasi placeat fugiat? Aliquid rem totam dolorum autem ipsa exercitationem, dolore consequuntur eos fugiat, est sunt, rerum ut laborum harum voluptatem minima sit asperiores veritatis sint quia fugit!</p><p>Blanditiis officia facere asperiores, labore, sit reiciendis dolorem maiores error nisi eligendi explicabo expedita fugit illo recusandae molestiae in ea.</p>",
+  "image": "https://api-oblog2.onrender.com/images/Antarctique.jpg",
+  "category": "Europe"
+}
+
+
+
 ### Modification d'un article par son id 
 PATCH  https://api-travel-blog.onrender.com/article/2
 content-type: application/json
 
 {
     "title":"Nouveau titre de l'article 2",
-    "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Error obcaecati ipsum voluptas ratione unde distinctio!'",
+    "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Error obcaecati ipsum voluptas ratione unde distinctio!",
     "content":"Lorem ipsum dolor sit, amet consectetur adipisicing elit. At enim ab qui ea, quasi placeat fugiat? Aliquid rem totam dolorum autem ipsa exercitationem, dolore consequuntur eos fugiat, est sunt, rerum ut laborum harum voluptatem minima sit asperiores veritatis sint quia fugit! Blanditiis officia facere asperiores, labore, sit reiciendis dolorem maiores error nisi eligendi explicabo expedita fugit illo recusandae molestiae in ea. Soluta iste, consectetur eveniet nihil commodi nisi, sequi similique error et id dolorem perferendis corrupti explicabo provident expedita, beatae odio modi? Qui, saepe accusantium, voluptates alias explicabo molestiae voluptatem placeat atque quidem velit similique necessitatibus vitae unde quos? Eius?",
     "image":"",
     "author":1
@@ -16,5 +30,9 @@ content-type: application/json
 
 
 ### Supprimer un article à partir de son id
-DELETE https://api-travel-blog.onrender.com/article/9
+DELETE http://localhost:3000/article/18
+
+
+### Supprimer un article à partir de son id
+DELETE https://api-travel-blog.onrender.com/article/14
 
