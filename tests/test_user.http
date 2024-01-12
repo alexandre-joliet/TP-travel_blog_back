@@ -1,2 +1,6 @@
 ### Récupération de tous les users
-GET https://api-travel-blog.onrender.com/users
+GET http://localhost:3000/admin/users
+
+
+### Récupération de tous les users
+GET https://api-travel-blog.onrender.com/admin/users

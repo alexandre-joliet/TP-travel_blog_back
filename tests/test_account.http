@@ -11,14 +11,18 @@ POST https://api-travel-blog.onrender.com/signup
 Content-Type: application/json
 
 {
-  "last_name": "Jean",
-  "first_name": "Michel",
+  "last_name": "TEST",
+  "first_name": "Test",
   "avatar": "",
-  "mail": "jmichel@mail.com",
-  "pseudo": "martine", 
+  "mail": "ctest@mail.com",
+  "pseudo": "test2", 
   "password": "password",
   "role_id": "2"
 }
+
+
+### Suppression d'un user [LOCAL]
+DELETE http://localhost:3000/admin/users/8
 
 
 ### Suppression d'un user

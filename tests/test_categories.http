@@ -1,6 +1,10 @@
 ### CATEGORIES
 
 ### Récupération de toutes les catégories
+GET http://localhost:3000/categories
+
+
+### Récupération de toutes les catégories
 GET https://api-travel-blog.onrender.com/categories
 
 
