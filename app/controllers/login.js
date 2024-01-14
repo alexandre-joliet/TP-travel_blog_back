@@ -1,5 +1,7 @@
+require("dotenv").config();
 const loginDataMapper = require("../dataMapper/login");
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const loginController = {
 
@@ -23,6 +25,8 @@ const loginController = {
     // On ne transmet pas le password au front
     foundUser.password = null;
 
+    const userToken = jwt.sign({"userInfo": foundUser}, process.env.JWT_SECRET)
+
     request.session.user = foundUser;
 
     request.session.isConnected = true;
@@ -30,9 +34,14 @@ const loginController = {
     if (error) {
       next(error);
     }
+    // TODO: revoir durée cookie + signature ?
     else {
-      console.log(request.session.user);
-      response.status(200).json({foundUser, message: "Connexion réussie"});
+      response.cookie("token", userToken, {
+        maxAge: 1000 * 60 * 2,
+        httpOnly: true,
+        // signed: true,
+      })
+      response.status(200).json({userToken, message: "Connexion réussie"});
     }
 
   }
