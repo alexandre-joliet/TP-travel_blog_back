@@ -8,9 +8,9 @@ const Router = require('./app/routers');
 
 app.use(cors({
   // TODO: a modifier par l'url du front
-  // origin: "http://localhost:3001",
+  origin: "http://localhost:3001",
   // origin: "https://tp-travel-blog-front.vercel.app",
-  origin: "https://api-travel-blog.onrender.com",
+  // origin: "https://api-travel-blog.onrender.com",
   credentials: true,
 }));
 
