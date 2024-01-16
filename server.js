@@ -24,7 +24,7 @@ app.use(session({
   saveUninitialized: false,
   // TODO: Secure à passer en true en prod + revoir la durée du cookie
   cookie: {
-    secure: false,
+    secure: true,
     maxAge: 1000 * 60 * 2,
   }
 }));
