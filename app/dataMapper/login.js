@@ -4,7 +4,7 @@ const loginDataMapper = {
   
   async logUser (mail) {
     const sqlQuery = {
-      text: 'SELECT * FROM "user" JOIN "role" ON "user".role_id = role.id WHERE "user".mail = $1',
+      text: 'SELECT "user".last_name, "user".first_name, "user".avatar, "user".mail, "user".pseudo, "user".password, "role".label FROM "user" JOIN "role" ON "user".role_id = role.id WHERE "user".mail = $1',
       values: [mail]
     }
 
