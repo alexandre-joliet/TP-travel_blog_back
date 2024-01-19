@@ -1,3 +1,4 @@
+const Article = require("../models/Article");
 const client = require("../services/database");
 
 const articleDatamapper = {
@@ -9,8 +10,8 @@ const articleDatamapper = {
     let error;
 
     try {
-      const result = await client.query(sqlQuery, [id]);
-      oneArticle = result.rows[0];
+      const results = await client.query(sqlQuery, [id]);
+      oneArticle = new Article(results.rows[0]);
     } catch (err) {
       error = err;
     }
@@ -82,8 +83,8 @@ const articleDatamapper = {
     let error;
 
     try {
-      const result = await client.query(sqlQuery);
-      updatedArticle = result.rows[0];
+      const results = await client.query(sqlQuery);
+      updatedArticle = results.rowCount;
     } catch (err) {
       error = err;
     }

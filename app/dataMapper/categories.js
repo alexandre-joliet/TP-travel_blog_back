@@ -1,3 +1,4 @@
+const Category = require('../models/Category');
 const client = require('../services/database');
 
 const categeoriesDatamapper = {
@@ -7,13 +8,16 @@ const categeoriesDatamapper = {
       text: 'SELECT * FROM "category"'
     } 
 
-    let allCategories;
+    let allCategories = [];
     let error;
 
     try {
-      const result = await client.query(sqlQuery);
-      allCategories = result.rows;
-      // console.log(allCategories);
+      const results = await client.query(sqlQuery);
+      
+      results.rows.forEach((category) => {
+        const foundCategory = new Category(category);
+        allCategories.push(foundCategory);
+      })
       
       if(!allCategories) {
         throw new Error(`Aucune catégorie n'a été trouvée !`)
