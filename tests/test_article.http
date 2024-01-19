@@ -2,6 +2,10 @@
 GET https://api-travel-blog.onrender.com/article/3
 
 
+### Récupération d'un article
+GET http://localhost:3000/article/3
+
+
 ### Création d'un article
 POST http://localhost:3000/article
 Content-Type: application/json
@@ -13,7 +17,6 @@ Content-Type: application/json
   "image": "https://api-oblog2.onrender.com/images/Antarctique.jpg",
   "category": "Europe"
 }
-
 
 
 ### Modification d'un article par son id 
@@ -30,7 +33,7 @@ content-type: application/json
 
 
 ### Supprimer un article à partir de son id
-DELETE http://localhost:3000/article/18
+DELETE http://localhost:3000/article/21
 
 
 ### Supprimer un article à partir de son id

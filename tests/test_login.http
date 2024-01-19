@@ -17,3 +17,6 @@ Content-Type: application/json
 }
 
 
+### Récupération de toutes les catégories
+GET http://localhost:3000/categories
+Authorization: token xxx

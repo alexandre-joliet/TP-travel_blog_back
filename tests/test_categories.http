@@ -13,8 +13,22 @@ GET https://api-travel-blog.onrender.com/categories
 GET https://api-travel-blog.onrender.com/category/6
 
 
+### Récupération d'une catégorie
+GET http://localhost:3000/category/6
+
+
 ### Création d'une catégorie
 POST https://api-travel-blog.onrender.com/category
+Content-Type: application/json
+
+{
+  "label": "USA",
+  "creator": 1
+} 
+
+
+### Création d'une catégorie
+POST http://localhost:3000/category
 Content-Type: application/json
 
 {
@@ -27,6 +41,10 @@ Content-Type: application/json
 DELETE https://api-travel-blog.onrender.com/category/13
 
 
+### Suppression d'une catégorie
+DELETE http://localhost:3000/category/16
+
+
 ### Modification d'une catégorie
 PATCH https://api-travel-blog.onrender.com/category/14
 Content-Type: application/json
@@ -35,6 +53,18 @@ Content-Type: application/json
   "label": "Italie"
 }
 
+### Modification d'une catégorie
+PATCH http://localhost:3000/category/14
+Content-Type: application/json
+
+{
+  "label": "France"
+}
+
 
 ### Récupération des articles d'une catégorie
 GET https://api-travel-blog.onrender.com/category/1/articles
+
+
+### Récupération des articles d'une catégorie
+GET http://localhost:3000/category/1/articles
