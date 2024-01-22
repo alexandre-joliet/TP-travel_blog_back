@@ -5,7 +5,11 @@ class Article extends CoreModel {
   description;
   content;
   image;
+  created_date;
   author;
+  label;
+  categoryid;
+   
 
   constructor(obj) {
     super(obj);
@@ -13,7 +17,10 @@ class Article extends CoreModel {
     this.description = obj.description;
     this.content = obj.content;
     this.image = obj.image;
+    this.created_date = obj.created_date;
     this.author = obj.author;
+    this.label = obj.label;
+    this.categoryid = obj.categoryid;
   }
 
   // GETTER
@@ -33,9 +40,22 @@ class Article extends CoreModel {
     return this.image;
   }
 
+  get created_date() {
+    return this.created_date;
+  }
+
   get author() {
     return this.author;
   }
+
+  get label() {
+    return this.label;
+  }
+
+  get categoryid() {
+    return this.categoryid;
+  }
+
 
   // SETTER
   set title(value) {
