@@ -46,6 +46,38 @@ const categoryDataMapper = {
   },
 
   async deleteOneCategory(id) {
+    // 1. On vérifie que la catégorie n'a pas d'articles associés
+    const verifyQuery = {
+      text: "SELECT * FROM article_has_category WHERE category_id = $1",
+      values: [id],
+    };
+
+    try {
+      const categoryResponse = await client.query(verifyQuery);
+
+      // 2. Si il y a des articles
+      if (categoryResponse.rowCount != 0) {
+        const articleArray = categoryResponse.rows;
+
+        for (item of articleArray) {
+          const itemId = item.id;
+
+          try {
+            const deleteQuery = {
+              text: "DELETE FROM article_has_category WHERE id = $1",
+              values: [itemId],
+            };
+            const deleteResponse = await client.query(deleteQuery);
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
+    // 3. Si il n'y en a pas (ou si elle vient d'être supprimée)
     const sqlQuery = {
       text: "DELETE FROM category WHERE id = $1",
       values: [id],
