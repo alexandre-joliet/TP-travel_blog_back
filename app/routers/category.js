@@ -1,26 +1,16 @@
-const categoryController = require('../controllers/category');
-// const securityBlog2Service = require('../services/security/security');
-
 const express = require('express');
 const router = express.Router();
+const categoryController = require('../controllers/category');
+const security = require('../services/security');
 
-// L'utilisateur est-il connecté
-// router.use(securityBlog2Service.isConnected);
-
-// Category
-// On récupère une catégorie en fonction de son ID
 router.get('/:id', categoryController.getOneCategory)
 
-// On crée une nouvelle catégorie
-router.post('/', categoryController.createOneCategory)
+router.post('/', security.checkTokenIsAdmin, categoryController.createOneCategory)
 
-// On supprime une catégorie
-router.delete('/:id', categoryController.deleteOneCategory)
+router.delete('/:id', security.checkTokenIsAdmin, categoryController.deleteOneCategory)
 
-// On modifie une catégorie
-router.patch('/:id', categoryController.updateOneCategory)
+router.patch('/:id', security.checkTokenIsAdmin, categoryController.updateOneCategory)
 
-// On affiche tous les articles liés à une catégorie
 router.get('/:id/articles', categoryController.getAllArticlesByCategory);
 
 
