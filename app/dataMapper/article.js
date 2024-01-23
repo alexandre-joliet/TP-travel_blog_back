@@ -21,20 +21,20 @@ const articleDatamapper = {
 
   async createArticle(title, description, cleanContentHTML, image, category) {
     const createArticleSqlQuery = {
-      text: 'INSERT INTO article (title, description, content, image, author) VALUES ($1, $2, $3, $4, 1)',
+      text: "INSERT INTO article (title, description, content, image, author) VALUES ($1, $2, $3, $4, 1)",
       values: [title, description, cleanContentHTML, image],
     };
 
     const getNewArticleIdSqlQuery = {
-      text: 'SELECT id FROM article WHERE title = $1',
-      values: [title]
+      text: "SELECT id FROM article WHERE title = $1",
+      values: [title],
     };
 
     const getCategoryIdSqlQuery = {
-      text: 'SELECT id FROM category WHERE label = $1',
-      values: [category]
-    }
-    
+      text: "SELECT id FROM category WHERE label = $1",
+      values: [category],
+    };
+
     let createdArticle;
     let newArticleId;
     let categoryId;
@@ -52,13 +52,14 @@ const articleDatamapper = {
       categoryId = resultGetCaterogy.rows[0].id;
 
       const createCategoryRelationSqlQuery = {
-        text: 'INSERT INTO article_has_category (article_id, category_id) VALUES ($1, $2)',
-        values: [newArticleId, categoryId]
+        text: "INSERT INTO article_has_category (article_id, category_id) VALUES ($1, $2)",
+        values: [newArticleId, categoryId],
       };
 
-      const resultCategoryRelation = await client.query(createCategoryRelationSqlQuery);
+      const resultCategoryRelation = await client.query(
+        createCategoryRelationSqlQuery
+      );
       createdCategoryRelation = resultCategoryRelation.rows[0];
-
     } catch (err) {
       error = err;
     }
@@ -92,69 +93,55 @@ const articleDatamapper = {
     return { error, updatedArticle };
   },
 
-  // TODO: A REFACTORISER
   async deleteArticle(id) {
-    console.log(`Id de l'article suprrimé `, id);
-    const values = [id];
-    // 1. vérifier que l'article dont on a l'id
-    // n'a pas une catégorie rattachée
-
-    const verifyQuery =
-      "SELECT * FROM article_has_category WHERE article_id=$1";
+    // 1. On vérifie que l'article n'a pas de catégorie associée
+    const verifyQuery = {
+      text: "SELECT * FROM article_has_category WHERE article_id = $1",
+      values: [id],
+    };
     try {
-      const article_response = await client.query(verifyQuery, values);
+      const articleResponse = await client.query(verifyQuery);
 
-      console.log(
-        "est-ce que je reçois quelque chose depuis article_has_category ? ",
-        article_response.rows[0]
-      );
-      // 2. s'il y a une catégorie rattachée
-      if (article_response.rows[0] != undefined) {
-        // supprimer l'entrée dans article_has_category
-        console.log(
-          "je veux supprimer l'entrée dont l'id est: ",
-          article_response.rows[0].id
-        );
-        const deleteQuery =
-          "DELETE FROM article_has_category WHERE id=$1 RETURNING *";
-        const article_has_categoryValues = [article_response.rows[0].id];
+      // 2. Si il y a une catégorie rattachée
+      if (articleResponse.rows[0] != undefined) {
+        const responseId = [articleResponse.rows[0].id];
+        const deleteQuery = {
+          text: "DELETE FROM article_has_category WHERE id = $1 RETURNING *",
+          values: [responseId[0]],
+        };
+
         try {
-          const responseDelete = await client.query(
-            deleteQuery,
-            article_has_categoryValues
-          );
-          console.log(
-            `J'ai bien une suppression de l'article_has_category`,
-            responseDelete.rows[0]
-          );
+          const deleteResponse = await client.query(deleteQuery);
         } catch (err) {
-          console.log(`J'ai l'erreur`, err);
+          console.log(err);
         }
       }
     } catch (err) {
-      console.log("error", err);
+      console.log(err);
     }
 
-    // 3. s'il n'y en pas (ou si elle vient d'être supprimée), tout va bien, on peut supprimer
-    // l'article
-    const sqlQuery = "DELETE FROM article WHERE id=$1 RETURNING *";
+    // 3. Si il n'y en a pas (ou si elle vient d'être supprimée)
+    const sqlQuery = {
+      text: "DELETE FROM article WHERE id= $1 RETURNING *",
+      values: [id],
+    };
 
     let error;
-    let article;
-    try {
-      const response = await client.query(sqlQuery, values);
+    let articleFound;
 
-      article = response.rows[0];
-      console.log("Je renvoie l'article supprimé ", article);
-      // Si article === undefined
-      if (article === undefined) {
-        throw new Error(`Il n'y as pas ce type d'article a supprimé`);
+    try {
+      const response = await client.query(sqlQuery);
+
+      articleFound = response.rows[0];
+
+      if (articleFound === undefined) {
+        throw new Error(`Aucun article à supprimer.`);
       }
     } catch (err) {
       error = err;
     }
-    // je renvoie les infos au controller
-    return { error, article };
+
+    return { error, articleFound };
   },
 };
 
