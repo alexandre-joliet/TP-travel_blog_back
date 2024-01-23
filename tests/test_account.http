@@ -7,6 +7,21 @@ GET https://api-travel-blog.onrender.com/account
 
 
 ### Création d'un compte
+POST http://localhost:3000/signup
+Content-Type: application/json
+
+{
+  "last_name": "TEST",
+  "first_name": "Test",
+  "avatar": "",
+  "mail": "ctest@mail.com",
+  "pseudo": "test2", 
+  "password": "password",
+  "role_id": "2"
+}
+
+
+### Création d'un compte
 POST https://api-travel-blog.onrender.com/signup
 Content-Type: application/json
 
