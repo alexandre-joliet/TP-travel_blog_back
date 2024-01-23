@@ -23,10 +23,10 @@ const userDataMapper = {
     return { error, allUsers };
   },
 
-  async getOneUserFromMail(mail) {
+  async getOneUserFromMail(cleanMail) {
     const sqlQuery = {
       text: 'SELECT * FROM "user" WHERE "mail" = $1',
-      values: [mail],
+      values: [cleanMail],
     };
 
     let error;
@@ -41,10 +41,10 @@ const userDataMapper = {
     return { error, userFound };
   },
 
-  async getOneUserFromPseudo(pseudo) {
+  async getOneUserFromPseudo(cleanPseudo) {
     const sqlQuery = {
       text: 'SELECT * FROM "user" WHERE "pseudo" = $1',
-      values: [pseudo],
+      values: [cleanPseudo],
     };
 
     let error;

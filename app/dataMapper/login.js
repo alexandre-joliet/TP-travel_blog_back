@@ -2,10 +2,10 @@ const client = require('../services/database');
 
 const loginDataMapper = {
   
-  async logUser (mail) {
+  async logUser (cleanMail) {
     const sqlQuery = {
       text: 'SELECT "user".last_name, "user".first_name, "user".avatar, "user".mail, "user".pseudo, "user".password, "role".label FROM "user" JOIN "role" ON "user".role_id = role.id WHERE "user".mail = $1',
-      values: [mail]
+      values: [cleanMail]
     }
 
     let error;

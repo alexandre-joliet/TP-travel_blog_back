@@ -19,20 +19,26 @@ const articleDatamapper = {
     return { error, oneArticle };
   },
 
-  async createArticle(title, description, cleanContentHTML, image, category) {
+  async createArticle(
+    cleanTitle,
+    cleanDescription,
+    cleanContentHTML,
+    cleanImage,
+    cleanCategory
+  ) {
     const createArticleSqlQuery = {
       text: "INSERT INTO article (title, description, content, image, author) VALUES ($1, $2, $3, $4, 1)",
-      values: [title, description, cleanContentHTML, image],
+      values: [cleanTitle, cleanDescription, cleanContentHTML, cleanImage],
     };
 
     const getNewArticleIdSqlQuery = {
       text: "SELECT id FROM article WHERE title = $1",
-      values: [title],
+      values: [cleanTitle],
     };
 
     const getCategoryIdSqlQuery = {
       text: "SELECT id FROM category WHERE label = $1",
-      values: [category],
+      values: [cleanCategory],
     };
 
     let createdArticle;
@@ -67,17 +73,17 @@ const articleDatamapper = {
     return { error, createdArticle };
   },
 
-  async updateOneArticle(id, body) {
+  async updateOneArticle(
+    id,
+    cleanTitle,
+    cleanDescription,
+    cleanContentHTML,
+    cleanImage,
+    cleanCategory
+  ) {
     const sqlQuery = {
-      text: "UPDATE article SET (title, description, content, image, author) = ($1, $2, $3, $4, $5) WHERE id=$6 RETURNING *",
-      values: [
-        body.title,
-        body.description,
-        body.content,
-        body.image,
-        body.author,
-        id,
-      ],
+      text: "UPDATE article SET (title, description, content, image) = ($1, $2, $3, $4) WHERE id = $5 RETURNING *",
+      values: [cleanTitle, cleanDescription, cleanContentHTML, cleanImage, id],
     };
 
     let updatedArticle;

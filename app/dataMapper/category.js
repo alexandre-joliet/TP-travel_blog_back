@@ -26,10 +26,10 @@ const categoryDataMapper = {
     return { error, oneCategory };
   },
 
-  async addNewCategory(value, creator) {
+  async addNewCategory(cleanLabel, creator) {
     const sqlQuery = {
       text: 'INSERT INTO category ("label", "creator") VALUES ($1, $2)',
-      values: [value.label, creator],
+      values: [cleanLabel, creator],
     };
 
     let newCategory;
@@ -96,10 +96,10 @@ const categoryDataMapper = {
     return { error, deletedCategory };
   },
 
-  async updateOneCategory(id, label) {
+  async updateOneCategory(id, cleanLabel) {
     const sqlQuery = {
       text: "UPDATE category SET label = $2 WHERE id = $1",
-      values: [id, label],
+      values: [id, cleanLabel],
     };
 
     let updatedCategory;
