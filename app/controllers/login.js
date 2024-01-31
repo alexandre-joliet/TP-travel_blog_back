@@ -52,7 +52,6 @@ const loginController = {
         httpOnly: true,
         signed: true,
         secure: true,
-        path: '/',
         sameSite: 'none',
       });
       response.status(200).json({ userToken, message: "Connexion réussie" });

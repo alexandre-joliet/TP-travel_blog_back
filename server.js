@@ -29,13 +29,13 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  // TODO: Secure à passer en true en prod + revoir la durée du cookie
-  cookie: {
-    secure: true,
-    maxAge: 1000 * 60 * 2,
-    sameSite: 'none',
-    httpOnly: true,
-  }
+  // // TODO: Secure à passer en true en prod + revoir la durée du cookie
+  // cookie: {
+  //   secure: true,
+  //   maxAge: 1000 * 60 * 2,
+  //   sameSite: 'none',
+  //   httpOnly: true,
+  // }
 }));
 
 // Pour pouvoir exploiter le body
