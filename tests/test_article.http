@@ -13,7 +13,7 @@ Content-Type: application/json
 {
   "title": "Nouveau super article",
   "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error obcaecati ipsum voluptas ratione unde distinctio!",
-  "content": "<h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</h2><p>At enim ab qui ea, quasi placeat fugiat? Aliquid rem totam dolorum autem ipsa exercitationem, dolore consequuntur eos fugiat, est sunt, rerum ut laborum harum voluptatem minima sit asperiores veritatis sint quia fugit!</p><p>Blanditiis officia facere asperiores, labore, sit reiciendis dolorem maiores error nisi eligendi explicabo expedita fugit illo recusandae molestiae in ea.</p>",
+  "content": "<h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</h2><p>At enim ab qui ea, quasi placeat fugiat? Aliquid rem totam dolorum autem ipsa exercitationem, dolore consequuntur eos fugiat, est sunt, rerum ut laborum harum voluptatem minima sit asperiores veritatis sint quia fugit!</p><p>Blanditiis officia facere asperiores, labore, sit reiciendis dolorem maiores error nisi eligendi explicabo expedita fugit illo recusandae molestiae in ea.</p><script>alert('test');</script>",
   "image": "https://api-oblog2.onrender.com/images/Antarctique.jpg",
   "category": "Europe"
 }
@@ -33,7 +33,7 @@ content-type: application/json
 
 
 ### Supprimer un article à partir de son id
-DELETE http://localhost:3000/article/21
+DELETE http://localhost:3000/article/26
 
 
 ### Supprimer un article à partir de son id
