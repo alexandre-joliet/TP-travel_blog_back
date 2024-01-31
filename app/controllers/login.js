@@ -45,13 +45,15 @@ const loginController = {
     }
     // TODO: revoir durée cookie + signature ?
     else {
+
       response.cookie("token", userToken, {
+        // domain: 'api-travel-blog.onrender.com',
         maxAge: 1000 * 60 * 2,
         httpOnly: true,
         signed: true,
         secure: true,
-        // path: '/',
-        SameSite: 'None',
+        path: '/',
+        sameSite: 'none',
       });
       response.status(200).json({ userToken, message: "Connexion réussie" });
     }
