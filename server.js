@@ -11,14 +11,14 @@ const whitelist = ['http://localhost:3001', 'https://tp-travel-blog-front.vercel
 
 app.use(cors({
   // TODO: a modifier par l'url du front
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  },
-  // origin: "https://tp-travel-blog-front.vercel.app",
+  origin: ['http://localhost:3001', 'https://tp-travel-blog-front.vercel.app'],
+  // origin: function (origin, callback) {
+  //   if (whitelist.indexOf(origin) !== -1 || !origin) {
+  //     callback(null, true)
+  //   } else {
+  //     callback(new Error('Not allowed by CORS'))
+  //   }
+  // },
 
   credentials: true,
 }));
