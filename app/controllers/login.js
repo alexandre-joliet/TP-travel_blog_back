@@ -34,10 +34,10 @@ const loginController = {
 
     const userToken = jwt.sign({ userInfo: foundUser }, process.env.JWT_SECRET);
 
-    // request.session.user = foundUser;
+    request.session.user = foundUser;
     // console.log(request.session.user);
 
-    // request.session.isConnected = true;
+    request.session.isConnected = true;
     // console.log(request.session.isConnected);
 
     if (error) {
@@ -50,6 +50,8 @@ const loginController = {
         httpOnly: true,
         signed: true,
         secure: true,
+        // path: '/',
+        SameSite: None,
       });
       response.status(200).json({ userToken, message: "Connexion réussie" });
     }
