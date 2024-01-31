@@ -25,18 +25,18 @@ app.use(cors({
 
 app.use(cookieParser(process.env.SESSION_SECRET));
 
-// app.use(session({
-//   secret: process.env.SESSION_SECRET,
-//   resave: false,
-//   saveUninitialized: false,
-//   // TODO: Secure à passer en true en prod + revoir la durée du cookie
-//   cookie: {
-//     secure: false,
-//     maxAge: 1000 * 60 * 2,
-//     sameSite: 'lax',
-//     httpOnly: true,
-//   }
-// }));
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  // TODO: Secure à passer en true en prod + revoir la durée du cookie
+  cookie: {
+    secure: true,
+    maxAge: 1000 * 60 * 2,
+    // sameSite: 'lax',
+    httpOnly: true,
+  }
+}));
 
 // Pour pouvoir exploiter le body
 app.use(express.json());
