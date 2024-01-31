@@ -34,10 +34,10 @@ const loginController = {
 
     const userToken = jwt.sign({ userInfo: foundUser }, process.env.JWT_SECRET);
 
-    request.session.user = foundUser;
+    // request.session.user = foundUser;
     // console.log(request.session.user);
 
-    request.session.isConnected = true;
+    // request.session.isConnected = true;
     // console.log(request.session.isConnected);
 
     if (error) {
@@ -48,7 +48,8 @@ const loginController = {
       response.cookie("token", userToken, {
         maxAge: 1000 * 60 * 2,
         httpOnly: true,
-        // signed: true,
+        signed: true,
+        secure: true,
       });
       response.status(200).json({ userToken, message: "Connexion réussie" });
     }
