@@ -7,19 +7,8 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const Router = require('./app/routers');
 
-const whitelist = ['http://localhost:3001', 'https://tp-travel-blog-front.vercel.app'];
-
 app.use(cors({
-  // TODO: a modifier par l'url du front
   origin: ['http://localhost:3001', 'https://tp-travel-blog-front.vercel.app'],
-  // origin: function (origin, callback) {
-  //   if (whitelist.indexOf(origin) !== -1 || !origin) {
-  //     callback(null, true)
-  //   } else {
-  //     callback(new Error('Not allowed by CORS'))
-  //   }
-  // },
-
   credentials: true,
 }));
 
@@ -29,13 +18,14 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  // // TODO: Secure à passer en true en prod + revoir la durée du cookie
-  // cookie: {
-  //   secure: true,
-  //   maxAge: 1000 * 60 * 2,
-  //   sameSite: 'none',
-  //   httpOnly: true,
-  // }
+  // TODO: Secure à passer en true en prod + revoir la durée du cookie
+  cookie: {
+    maxAge: 1000 * 60 * 5,
+    httpOnly: true,
+    signed: true,
+    // secure: true,
+    sameSite: 'none',
+  }
 }));
 
 // Pour pouvoir exploiter le body

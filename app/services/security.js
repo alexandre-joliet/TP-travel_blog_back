@@ -1,11 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const security = {
-  isConnected: (request, response, next) => {
 
-  },
-  
-  
   checkToken: (request, response, next) => {
     if (
       request.headers.authorization &&

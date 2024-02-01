@@ -48,11 +48,11 @@ const loginController = {
 
       response.cookie("token", userToken, {
         // domain: 'api-travel-blog.onrender.com',
-        maxAge: 1000 * 60 * 2,
+        maxAge: 1000 * 60 * 5,
         httpOnly: true,
-        signed: true,
-        secure: true,
+        secure: true, 
         sameSite: 'none',
+        // signed: true,
       });
       response.status(200).json({ userToken, message: "Connexion réussie" });
     }
